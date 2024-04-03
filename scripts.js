@@ -15,16 +15,36 @@ var cidade = document.getElementById("cidade");
 var estado = document.getElementById("estado");
 
 function alertar(){
+
+    // buscar o endereço pelo cep
+    const url = `https://viacep.com.br/ws/${cep.value}/json`;
+    fetch(url)
+        .then(resposta=>resposta.json())
+        .then(data => {
+            logradouro.value = data.logradouro;
+            bairro.value = data.bairro;
+            cidade.value = data.localidade;
+            estado.value = data.uf;
+
+            saida.innerText = "Nome: " + " " + nome.value +
+            "\n E-mail: "+ " " + email.value + 
+            "\n Telefone: "+ " "+ telefone.value + 
+            "\n CEP: "+ " " + cep.value + 
+            "\n Logradouro: "+ " " + logradouro.value + 
+            "\n Número: "+ " " + numero.value + 
+            "\n Complemento: "+ " " + complemento.value + 
+            "\n Bairro: "+ " " + bairro.value + 
+            "\n Cidade: "+ " " + cidade.value + 
+            "\n Estado: "+ " " + estado.value;
+        })
+        .catch(error=>alert(error.message()))
+
     //alert(nome.value + " " + "clicou no botão!!!");
-    saida.innerText = "Nome: " + " " + nome.value +
-    "\n E-mail: "+ " " + email.value + 
-    "\n Telefone: "+ " "+ telefone.value + 
-    "\n CEP: "+ " " + cep.value + 
-    "\n Logradouro: "+ " " + logradouro.value + 
-    "\n Número: "+ " " + numero.value + 
-    "\n Complemento: "+ " " + complemento.value + 
-    "\n Bairro: "+ " " + bairro.value + 
-    "\n Cidade: "+ " " + cidade.value + 
-    "\n Estado: "+ " " + estado.value;
+    
+
+    
+
+
+
 }
  
